@@ -1,0 +1,40 @@
+﻿@model Books.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm" style="width: 250pt;">
+                <img style="width: 200pt;" src="@Url.Content(Model.ImagePath)" class="card-img-top img-size">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(model => model.BookName)</h5>
+                    @Html.DisplayNameFor(model => model.AuthorName):
+                    @Html.DisplayFor(model => model.AuthorName)
+                    <br />
+                    @Html.DisplayNameFor(model => model.Price):
+                    @Html.DisplayFor(model => model.Price)
+                    <br />
+                    @Html.DisplayFor(model => model.BookCategory):
+                    @Html.DisplayFor(model => model.BookCategory)
+                    <br />
+                    @Html.DisplayNameFor(model => model.BookCondition):
+                    @Html.DisplayFor(model => model.BookCondition)
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Buy</a>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
