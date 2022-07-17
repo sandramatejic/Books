@@ -1,12 +1,20 @@
 ﻿@model IEnumerable<Books.Models.Book>
 
+@{
+    ViewBag.Title = "AddToCart";
+}
+
 
 @if (Model.Count() == 0)
 {
-    <h2>Sorry! The item with that name doesn't exist!</h2>
+    <h2>Your Cart is empty!</h2>
+    <p>
+        @Html.ActionLink("No! I want to spend my money!", "Index")
+    </p>
 }
 else
 {
+    <h2>My Cart</h2>
     <table class="table">
         <tr>
             <th>
@@ -16,8 +24,9 @@ else
                 @Html.DisplayNameFor(model => model.AuthorName)
             </th>
             <th>
-                Image
+                @Html.DisplayNameFor(model => model.Price)
             </th>
+            <th></th>
         </tr>
 
         @foreach (var item in Model)
@@ -29,16 +38,18 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.AuthorName)
                 </td>
-                <td class="td-size">
-                    <img style="width: 100pt;" src="@Url.Content(item.ImagePath)" alt="Image" class="img-responsive" />
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", "Book", new { id = item.ID }, null)
+                    @Html.DisplayFor(modelItem => item.ImagePath)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.ID })
                 </td>
             </tr>
         }
 
     </table>
 }
-
 

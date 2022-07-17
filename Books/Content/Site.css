@@ -31,8 +31,10 @@ textarea {
     background-repeat: no-repeat;
 }
 .card{
-    width: 100vw;
+    width: 80%;
+    margin: auto;
 }
-.img-size{
-    width: 200pt;
+.td-size{
+    width: 70pt;
+    height: 100pt;
 }

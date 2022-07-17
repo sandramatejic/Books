@@ -10,10 +10,10 @@
     <hr />
     <div class="row">
         <div class="col-md-6">
-            <div class="card shadow-sm" style="width: 250pt;">
-                <img style="width: 200pt;" src="@Url.Content(Model.ImagePath)" class="card-img-top img-size">
+            <div class="card">
+                <img src="@Url.Content(Model.ImagePath)" class="card-img-top img-size img-responsive">
                 <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(model => model.BookName)</h5>
+                    <h3 class="card-title">@Html.DisplayFor(model => model.BookName)</h3>
                     @Html.DisplayNameFor(model => model.AuthorName):
                     @Html.DisplayFor(model => model.AuthorName)
                     <br />
@@ -26,7 +26,14 @@
                     @Html.DisplayNameFor(model => model.BookCondition):
                     @Html.DisplayFor(model => model.BookCondition)
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Buy</a>
+                        @using (Html.BeginForm("AddToCart", "Book", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <div>
+                                    <input name="AddToCart" type="submit" value="Buy" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

@@ -102,6 +102,16 @@ namespace Books.Controllers
             }
             return HttpNotFound();
         }
-
+        [HttpGet]
+        public ActionResult AddToCart()
+        {
+            var model = DataBooks.cart;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddToCart(Book book)
+        {
+            return RedirectToAction("AddToCart");
+        }
     }
 }

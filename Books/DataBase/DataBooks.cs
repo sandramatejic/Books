@@ -61,5 +61,12 @@ namespace Books.DataBase
             }
             return searchedBooks;
         }
+
+        public static List<Book> cart = new List<Book>();
+
+        public static IEnumerable<Book> GetCart()
+        {
+            return cart;
+        }
     }
 }
