@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    var ID = ViewBag.ID;
 }
 
 <h2>Details</h2>
@@ -26,12 +27,17 @@
                     @Html.DisplayNameFor(model => model.BookCondition):
                     @Html.DisplayFor(model => model.BookCondition)
                     <div class="card-footer">
-                        @using (Html.BeginForm("AddToCart", "Book", FormMethod.Post))
+                        @using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post))
                         {
-                            <div class="form-group">
-                                <div>
-                                    <input name="AddToCart" type="submit" value="Buy" class="btn btn-primary" />
-                                </div>
+                            <div>
+                                @if (Model.Availability == "Sold")
+                                {
+                                    <h4>Sorry! This item is sold!</h4>
+                                }
+                                else
+                                {
+                                    <button name="idAdd" type="submit" value="@Model.ID" class="btn btn-primary">Add to Cart</button>
+                                }
                             </div>
                         }
                     </div>
@@ -42,6 +48,5 @@
     </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Book")
 </p>

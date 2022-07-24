@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -27,5 +28,7 @@ namespace Books.Models
         [Display(Name = "Upload Image")]
         public string ImagePath { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
+        public string Availability { get; set; }
+        public int OrderId { get; set; }
     }
 }

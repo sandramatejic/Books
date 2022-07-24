@@ -13,16 +13,11 @@ namespace Books.Controllers
     public class BookController : Controller
     {
         // GET: Book
-        public ActionResult Index(string search)
+        public ActionResult Index()
         {
-            if(search != null)
-            {
-                var model = DataBooks.SearchBook(search);
-                return View(model);
+            var model = DataBooks.GetBooks();
+            return View(model);
 
-            }
-            var all = DataBooks.GetBooks();
-            return View(all);
         }
         [HttpGet]
         public ActionResult Create()
@@ -35,23 +30,24 @@ namespace Books.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(book.ImageFile != null)
+
+                if (book.ImageFile != null)
                 {
                     string fileName = Path.GetFileNameWithoutExtension(book.ImageFile.FileName);
                     string extension = Path.GetExtension(book.ImageFile.FileName).ToLower();
 
-                    if(extension == ".jpg" || extension == ".png")
+                    if (extension == ".jpg" || extension == ".png")
                     {
                         fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
                         book.ImagePath = "~/Images/" + fileName;
                         fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
                         book.ImageFile.SaveAs(fileName);
 
+                        book.Availability = "Available";
                         DataBooks.Add(book);
                         return RedirectToAction("Index");
                     }
                 }
-
             }
             return HttpNotFound();
         }
@@ -101,17 +97,6 @@ namespace Books.Controllers
                 return RedirectToAction("Index");
             }
             return HttpNotFound();
-        }
-        [HttpGet]
-        public ActionResult AddToCart()
-        {
-            var model = DataBooks.cart;
-            return View(model);
-        }
-        [HttpPost]
-        public ActionResult AddToCart(Book book)
-        {
-            return RedirectToAction("AddToCart");
         }
     }
 }

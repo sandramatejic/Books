@@ -10,10 +10,10 @@ namespace Books.DataBase
     {
         public static List<Book> books = new List<Book>()
         {
-            new Book {ID=1, BookName="One Hundred Years of Solitude", AuthorName="Gabriel Garcia Marquez", BookCategory=Category.Drama, BookCondition=Condition.Good, Price=5, ImagePath="~/Images/marquez.jpg" },
-            new Book {ID=2 ,BookName="Hunger", AuthorName="Knut Hamsun", BookCategory=Category.Drama, BookCondition=Condition.Poor, Price=4, ImagePath="~/Images/hamsun.jpg" },
-            new Book {ID=3 ,BookName="The Fortress", AuthorName="Mesa Selimovic", BookCategory=Category.Drama, BookCondition=Condition.Fair, Price=7, ImagePath= "~/Images/mesa.jpg" },
-            new Book {ID=4 ,BookName="To Kill a Mockingbird", AuthorName="Harper Lee", BookCategory=Category.Drama, BookCondition=Condition.New, Price=13, ImagePath= "~/Images/harper.jpg" }
+            new Book {ID=1, BookName="One Hundred Years of Solitude", AuthorName="Gabriel Garcia Marquez", BookCategory=Category.Drama, BookCondition=Condition.Good, Price=5, ImagePath="~/Images/marquez.jpg", Availability= "Available" },
+            new Book {ID=2 ,BookName="Hunger", AuthorName="Knut Hamsun", BookCategory=Category.Drama, BookCondition=Condition.Poor, Price=4, ImagePath="~/Images/hamsun.jpg", Availability= "Available" },
+            new Book {ID=3 ,BookName="The Fortress", AuthorName="Mesa Selimovic", BookCategory=Category.Drama, BookCondition=Condition.Fair, Price=7, ImagePath= "~/Images/mesa.jpg" ,Availability= "Available"},
+            new Book {ID=4 ,BookName="To Kill a Mockingbird", AuthorName="Harper Lee", BookCategory=Category.Drama, BookCondition=Condition.New, Price=13, ImagePath= "~/Images/harper.jpg" ,Availability= "Available"}
         };
 
         public static IEnumerable<Book> GetBooks()
@@ -67,6 +67,18 @@ namespace Books.DataBase
         public static IEnumerable<Book> GetCart()
         {
             return cart;
+        }
+        public static Book GetCart(int id)
+        {
+            return cart.FirstOrDefault(r => r.ID == id);
+        }
+        public static void RemoveCart(int id)
+        {
+            var b = Get(id);
+            if (b != null)
+            {
+                cart.Remove(b);
+            }
         }
     }
 }

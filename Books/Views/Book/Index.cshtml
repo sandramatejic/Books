@@ -11,18 +11,9 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@using (Html.BeginForm("Index", "Book", FormMethod.Get))
-{
-    @Html.TextBox("search")
-    <input type="submit" value="Search" class="btn btn-default" />
-}
+<input id="mySearch" type="text" placeholder="Search" class="form-control" />
 
-
-@if (Model.Count() == 0)
-{
-    <h2>Not Found</h2>
-}
-<table class="table">
+<table class="table" id="myTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ID)
@@ -41,6 +32,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Availability)
         </th>
     </tr>
 
@@ -66,11 +60,25 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.DisplayFor(modelItem => item.Availability)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
             </td>
         </tr>
     }
 
 </table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#mySearch").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

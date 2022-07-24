@@ -34,7 +34,17 @@ textarea {
     width: 80%;
     margin: auto;
 }
-.td-size{
-    width: 70pt;
-    height: 100pt;
+.my_panel .panel-body {
+    padding: 0px;
+}
+
+.my_panel .panel-footer {
+    text-align: center;
+}
+
+#imagee {
+    object-fit: contain;
+}
+#mySearch{
+    margin-bottom: 10pt;
 }

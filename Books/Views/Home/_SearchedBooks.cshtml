@@ -7,38 +7,34 @@
 }
 else
 {
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BookName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorName)
-            </th>
-            <th>
-                Image
-            </th>
-        </tr>
-
+<div class="container">
+    <div class="row">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BookName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AuthorName)
-                </td>
-                <td class="td-size">
-                    <img style="width: 100pt;" src="@Url.Content(item.ImagePath)" alt="Image" class="img-responsive" />
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", "Book", new { id = item.ID }, null)
-                </td>
-            </tr>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="panel panel-default my_panel">
+                            <div class="panel-body">
+                                <a href="@Url.Action("Details","Book", new {id= item.ID})">
+                                    <img src="@Url.Content(item.ImagePath)" alt="Image" class="img-responsive center-block" id="imagee" />
+                                </a>
+                            </div>
+                            <div class="panel-footer">
+                                <a href="@Url.Action("Details","Book", new {id= item.ID})">
+                                    <h3>@Url.Content(item.BookName)</h3>
+                                </a>
+                                @Html.DisplayNameFor(model => model.AuthorName): @Html.DisplayFor(modelItem => item.AuthorName) <br />
+                                @Html.DisplayNameFor(model => model.BookCategory): @Html.DisplayFor(modelItem => item.BookCategory) <br />
+                                @Html.DisplayNameFor(model => model.Price) : @Html.DisplayFor(modelItem => item.Price)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
-
-    </table>
+    </div>
+</div>
 }
 
 
