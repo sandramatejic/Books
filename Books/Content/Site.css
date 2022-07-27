@@ -42,9 +42,58 @@ textarea {
     text-align: center;
 }
 
-#imagee {
+#imagee{
+    max-width:100%;
+    height:100%;
     object-fit: contain;
 }
+
 #mySearch{
     margin-bottom: 10pt;
+}
+
+.margin-footer{
+    margin-top:10pt;
+}
+
+#panel-image{
+    height:170pt;
+    width:170pt;
+}
+
+#panel-text {
+    height: 120pt;
+    margin-bottom:10pt;
+}
+
+#detail-row {
+    height: 200pt;
+    width: 400pt;
+    box-shadow: 0 0 3px gray;
+    border-radius:5px;
+}
+
+.text-margin{
+    margin-top:10pt;
+}
+
+#detail-image {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position:absolute;
+    right: 0pt;
+}
+#detail-div-image {
+    height: 200pt;
+    display: block;
+}
+.container-margin {
+    margin-bottom: 10pt;
+}
+.btn-position{
+    margin-top:20pt;
+}
+.alert{
+    display:none;
 }

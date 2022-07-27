@@ -47,6 +47,12 @@ namespace Books.Controllers
         [HttpPost]
         public ActionResult Order(Order order)
         {
+            var deleted = DataBooks.GetCarts();
+            foreach(var book in deleted)
+            {
+                DataBooks.Remove(book.ID);
+            }
+            DataBooks.cart.Clear();
             return RedirectToAction("Index", "Book");
         }
     }

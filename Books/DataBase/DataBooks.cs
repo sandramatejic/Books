@@ -64,7 +64,7 @@ namespace Books.DataBase
 
         public static List<Book> cart = new List<Book>();
 
-        public static IEnumerable<Book> GetCart()
+        public static IEnumerable<Book> GetCarts()
         {
             return cart;
         }
@@ -74,9 +74,11 @@ namespace Books.DataBase
         }
         public static void RemoveCart(int id)
         {
-            var b = Get(id);
+            var b = GetCart(id);
             if (b != null)
             {
+                var a = Get(b.ID);
+                a.Availability = "Available";
                 cart.Remove(b);
             }
         }

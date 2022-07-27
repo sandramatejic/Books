@@ -15,12 +15,12 @@ else
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="panel panel-default my_panel">
-                            <div class="panel-body">
-                                <a href="@Url.Action("Details","Book", new {id= item.ID})">
+                            <div class="panel-body" id="panel-image">
+                                <a class="imagee" href="@Url.Action("Details","Book", new {id= item.ID})">
                                     <img src="@Url.Content(item.ImagePath)" alt="Image" class="img-responsive center-block" id="imagee" />
                                 </a>
                             </div>
-                            <div class="panel-footer">
+                            <div class="panel-footer" id="panel-text">
                                 <a href="@Url.Action("Details","Book", new {id= item.ID})">
                                     <h3>@Url.Content(item.BookName)</h3>
                                 </a>

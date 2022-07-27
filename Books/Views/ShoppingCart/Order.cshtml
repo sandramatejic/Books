@@ -6,7 +6,7 @@
 
 <h2>Order</h2>
 
-@using (Html.BeginForm("Index", "Book"))
+@using (Html.BeginForm("Order", "ShoppingCart", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -55,7 +55,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Order" class="btn btn-default" />
+                <input type="submit" value="Order" class="btn btn-default" id="order-button"/>
             </div>
         </div>
     </div>
@@ -67,4 +67,13 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('#order-button').click(function () {
+                $('.alert').show();
+                window.location.href = "https://localhost:44301/Book";
+            });
+        });
+    </script>
 }

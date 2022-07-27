@@ -7,46 +7,44 @@
 
 <h2>Details</h2>
 
-<div>
-    <hr />
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <img src="@Url.Content(Model.ImagePath)" class="card-img-top img-size img-responsive">
-                <div class="card-body">
-                    <h3 class="card-title">@Html.DisplayFor(model => model.BookName)</h3>
-                    @Html.DisplayNameFor(model => model.AuthorName):
-                    @Html.DisplayFor(model => model.AuthorName)
-                    <br />
-                    @Html.DisplayNameFor(model => model.Price):
-                    @Html.DisplayFor(model => model.Price)
-                    <br />
-                    @Html.DisplayFor(model => model.BookCategory):
-                    @Html.DisplayFor(model => model.BookCategory)
-                    <br />
-                    @Html.DisplayNameFor(model => model.BookCondition):
-                    @Html.DisplayFor(model => model.BookCondition)
-                    <div class="card-footer">
-                        @using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post))
+<div class="container container-margin">
+    <div class="row" id="detail-row">
+        <div class="col-md-6 text-margin">
+            <h3>@Html.DisplayFor(model => model.BookName)</h3>
+            @Html.DisplayNameFor(model => model.AuthorName):
+            @Html.DisplayFor(model => model.AuthorName)
+            <br />
+            @Html.DisplayNameFor(model => model.Price):
+            @Html.DisplayFor(model => model.Price)
+            <br />
+            @Html.DisplayFor(model => model.BookCategory):
+            @Html.DisplayFor(model => model.BookCategory)
+            <br />
+            @Html.DisplayNameFor(model => model.BookCondition):
+            @Html.DisplayFor(model => model.BookCondition)
+            <div>
+                @using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post))
+                {
+                    <div class="btn-position">
+                        @if (Model.Availability == "Sold")
                         {
-                            <div>
-                                @if (Model.Availability == "Sold")
-                                {
-                                    <h4>Sorry! This item is sold!</h4>
-                                }
-                                else
-                                {
-                                    <button name="idAdd" type="submit" value="@Model.ID" class="btn btn-primary">Add to Cart</button>
-                                }
-                            </div>
+                            <h4>Sorry! This item is sold!</h4>
+                        }
+                        else
+                        {
+                            <button name="idAdd" type="submit" value="@Model.ID" class="btn btn-primary">Add to Cart</button>
                         }
                     </div>
-                </div>
+                }
             </div>
-            <br />
+        </div>
+        <div class="col-md-6" id="detail-div-image">
+            <img src="@Url.Content(Model.ImagePath)" class="img-responsive" id="detail-image">
         </div>
     </div>
 </div>
+
 <p>
     @Html.ActionLink("Back to List", "Index", "Book")
 </p>
+
