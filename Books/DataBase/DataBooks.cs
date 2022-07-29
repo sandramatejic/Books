@@ -61,26 +61,5 @@ namespace Books.DataBase
             }
             return searchedBooks;
         }
-
-        public static List<Book> cart = new List<Book>();
-
-        public static IEnumerable<Book> GetCarts()
-        {
-            return cart;
-        }
-        public static Book GetCart(int id)
-        {
-            return cart.FirstOrDefault(r => r.ID == id);
-        }
-        public static void RemoveCart(int id)
-        {
-            var b = GetCart(id);
-            if (b != null)
-            {
-                var a = Get(b.ID);
-                a.Availability = "Available";
-                cart.Remove(b);
-            }
-        }
     }
 }

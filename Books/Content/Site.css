@@ -97,3 +97,8 @@ textarea {
 .alert{
     display:none;
 }
+.session{
+    color: white;
+    position: absolute;
+    top: 11pt;
+}

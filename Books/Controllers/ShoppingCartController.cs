@@ -18,7 +18,7 @@ namespace Books.Controllers
         [HttpGet]
         public ActionResult AddToCart()
         {
-            var model = DataBooks.cart;
+            var model = DataOrders.cart;
             return View(model);
         }
         [HttpPost]
@@ -27,7 +27,7 @@ namespace Books.Controllers
             if(ModelState.IsValid)
             {
                 var model = DataBooks.Get(idAdd);
-                DataBooks.cart.Add(model);
+                DataOrders.cart.Add(model);
                 var available = DataBooks.Get(idAdd);
                 available.Availability = "Sold";
                 return RedirectToAction("AddToCart");
@@ -36,24 +36,35 @@ namespace Books.Controllers
         }
         public ActionResult RemoveFromCart(int id)
         {
-            DataBooks.RemoveCart(id);
+            DataOrders.RemoveCart(id);
             return RedirectToAction("AddToCart");
         }
         [HttpGet]
         public ActionResult Order()
         {
-            return View();
+            if (Session["FullName"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "User");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Order(Order order)
         {
-            var deleted = DataBooks.GetCarts();
-            foreach(var book in deleted)
+            if(ModelState.IsValid)
             {
-                DataBooks.Remove(book.ID);
+                order.OrderList = DataOrders.cart;
+                DataOrders.AddOrder(order);
+                var deleted = DataOrders.GetCarts();
+                foreach (var book in deleted)
+                {
+                    DataBooks.Remove(book.ID);
+                }
+                DataOrders.cart.Clear();
+                return RedirectToAction("Index", "Book");
             }
-            DataBooks.cart.Clear();
-            return RedirectToAction("Index", "Book");
+            return HttpNotFound();
         }
     }
 }

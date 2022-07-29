@@ -22,7 +22,11 @@ namespace Books.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            if(Session["FullName"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "User");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

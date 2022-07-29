@@ -28,6 +28,16 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("My Cart", "AddToCart", "ShoppingCart")</li>
+                    @if (Session["FullName"] != null)
+                    {
+                        <li class="session">@Session["FullName"].ToString()</li>
+                        <li><a href="@Url.Action("Logout","User")">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "User")</li>
+
+                    }
                 </ul>
             </div>
         </div>
